@@ -1,0 +1,22 @@
+# Secrets - never commit
+opencode.json
+.env
+*.bak
+.bak/
+downloads/opencode-windows-x64.zip
+bin/opencode.exe
+
+# Build artifacts
+*.log
+*.tmp
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp

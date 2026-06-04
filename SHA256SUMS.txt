@@ -1,0 +1,22 @@
+# SHA256 checksums for OpenCode v1.15.13 air-gap package
+# Generated: 2026-06-04
+# Verify on Windows:  certutil -hashfile <filename> SHA256
+#
+# Reference checksums:
+#   opencode.exe             d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8
+#   opencode-windows-x64.zip 186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85
+#
+f1da27c1f96821d44e966155b0ede606bbb5a3e2d0dff4b63f7e71f07a2f860c  .gitignore
+fd5b6adc0d05d8bccba2cfd0e95c22ca6bcee7b551607f7e0c90f07ab45251f3  README.md
+434d9fc66beae754c72d127f8014573eda6bfd8b43586908f341c5d4509744c8  install_settings.bat
+96bf42081044bea2a062b10bbfed2c4585355b0608687a654c0a65e34049f49e  opencode.example.json
+f59d5407a4aadf7208dd1c6f361dd1e2575908a3e6809a2660f49f03b39566af  opencode.json
+5a805ca757e8067553890f03e81abcc6a6533537b844fef8ebdab3debe7bfcd9  run.bat
+b1b80876705b0501a4e8de8560060f80fec0af75630830718253e3e917f2cbc4  setup.bat
+32c0973a9f88004ebb9ca7459a52e558242d3b633c2d89918d2903122b8e51ab  uninstall.bat
+7298c714a2b8f0f01edc3e2e3897c23b75e8dbccb78369d6a0e7012ce614b56d  verify.bat
+3ea56e0c2b0752b67684376a2da9dc0a395b5dfe9827012601bf82a2691c287d  messages/zh.txt
+d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8  bin/opencode.exe
+597026e6f88f066ab2a7fe1b5f2644be7c6ee2d7dff07774c9959a5b4dd2b9d1  docs/ARCHITECTURE.md
+f4e4cd233e9dccbb36471fad2b58751baa2ac566d1c3e9aab9e19d28ea4de93d  docs/TROUBLESHOOTING.md
+186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85  downloads/opencode-windows-x64.zip
