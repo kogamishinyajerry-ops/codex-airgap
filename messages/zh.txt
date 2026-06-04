@@ -1,50 +1,140 @@
-# OpenCode v1.15.13 内网部署文案外置
-# 2026-06-04
-# 用法: 此文件供 README.md 引用,所有 .bat 内部使用 ASCII + UTF-8 BOM
+﻿# OpenCode v1.15.13 内网气隙部署 - 中文消息字典
+# 格式: [LABEL] 文本 (UTF-8 with BOM, CRLF)
+# .bat 通过 call :msg LABEL 调用
+# v6 精修 (2026-06-04): 完整覆盖所有 5 个脚本 + install_deps
 
-# ============================================================
-# run.bat 输出
-# ============================================================
-RUN_FATAL_EXE = [FATAL] bin\opencode.exe 不存在,请先运行 setup.bat
-RUN_FATAL_CFG = [FATAL] opencode.json 不存在
+# ===== 通用 =====
+[DEPLOY_BORDER] ============================================
+[DEPLOY_BORDER2] --------------------------------------------
+[DEPLOY_TITLE] OpenCode v1.15.13 - 内网气隙一键部署
+[DEPLOY_SUBTITLE] Target: Windows x64 + New API (气隙隔离)
+[PRESS_ANY_KEY] 按任意键退出...
 
-# ============================================================
-# setup.bat 输出
-# ============================================================
-SETUP_TITLE      = OpenCode v1.15.13 - 首次部署
-SETUP_TARGET     = 目标: New API @ http://10.136.232.50/v1
-SETUP_MODEL      = 模型: GLM-5.1-AWQ-4bit
-SETUP_STEP1      = [Step 1/6] 正在解压 opencode.exe ...
-SETUP_STEP1_SKIP =   - bin\opencode.exe 已存在,跳过解压
-SETUP_STEP1_OK   =   - 解压完成
-SETUP_STEP1_FATAL =   [FATAL] 未找到 opencode-windows-x64.zip
-SETUP_STEP1_EXTRACT_FAIL =   [FATAL] 解压失败
-SETUP_STEP2      = [Step 2/6] 正在校验 SHA256 ...
-SETUP_STEP2_OK   =   - SHA256 校验通过
-SETUP_STEP2_WARN =   [WARN] SHA256 不一致,文件可能损坏
-SETUP_STEP3      = [Step 3/6] 正在检查 opencode.json ...
-SETUP_STEP3_OK   =   - 配置文件已就位
-SETUP_STEP3_FATAL =   [FATAL] opencode.json 不存在,请从 opencode.example.json 复制
-SETUP_STEP4      = [Step 4/6] 正在验证 New API 连通性 ...
-SETUP_STEP4_OK   =   - New API 可达
-SETUP_STEP4_WARN_401 =   [WARN] 401 未授权,API Key 可能无效
-SETUP_STEP4_WARN_403 =   [WARN] 403 禁止,API Key 被拒绝
-SETUP_STEP4_WARN_404 =   [WARN] 404 未找到,base URL 错误或 /v1/models 端点未开放
-SETUP_STEP4_WARN_000 =   [WARN] 网络不可达,请检查 VPN / 网线
-SETUP_STEP4_WARN_OTH =   [WARN] HTTP 状态异常
-SETUP_STEP5      = [Step 5/6] 正在测试 opencode.exe --version ...
-SETUP_STEP5_FATAL =   [FATAL] opencode.exe 启动失败
-SETUP_STEP6      = [Step 6/6] 部署完成
-SETUP_NEXT       = 下一步: 运行 run.bat 启动 OpenCode
+# ===== setup.bat (7 步) =====
+[SETUP_TARGET] 目标: New API @ http://10.136.232.50/v1
+[SETUP_MODEL] 模型: GLM-5.1-AWQ-4bit
+[SETUP_INFO_VC] [INFO] 探测 VC++ 2015-2022 Redistributable (x64)...
+[SETUP_VC_OK]       [OK] VC++ Redist 已安装
+[SETUP_VC_WARN]       [WARN] VC++ Redist 未在注册表检测到,若 opencode.exe 报 missing DLL,需先装
 
-# ============================================================
-# verify.bat 输出
-# ============================================================
-VERIFY_TITLE  = OpenCode 连通性诊断
-VERIFY_STEP1  = [1/5] 二进制检查 ...
-VERIFY_STEP2  = [2/5] 配置检查 ...
-VERIFY_STEP3  = [3/5] 网络 ping 测试 ...
-VERIFY_STEP4  = [4/5] HTTP /v1/models 测试 ...
-VERIFY_STEP5  = [5/5] 鉴权 + 模型真实调用测试 ...
-VERIFY_DONE   = 诊断完成
-VERIFY_FAIL   = 诊断失败
+[STEP1_HEADER] ---- 1. 解压 opencode.exe ----
+[STEP1_SKIP]       - bin\opencode.exe 已存在,跳过
+[STEP1_OK]       - 解压完成
+[STEP1_FATAL_ZIP]       [FATAL] downloads\opencode-windows-x64.zip 缺失
+[STEP1_FATAL_EXTRACT]       [FATAL] 解压失败
+
+[STEP2_HEADER] ---- 2. SHA256 校验 ----
+[STEP2_OK]       - 校验通过
+[STEP2_WARN]       [WARN] 校验失败,文件可能损坏
+[STEP2_EXPECTED]       预期:
+[STEP2_ACTUAL]       实际:
+
+[STEP3_HEADER] ---- 3. 检查 opencode.json ----
+[STEP3_OK]       - 配置文件就位
+[STEP3_FATAL]       [FATAL] opencode.json 不存在
+[STEP3_HINT]       请从 opencode.example.json 复制并填入真实凭据
+
+[STEP4_HEADER] ---- 4. 验证 New API 连通 (内网) ----
+[STEP4_TARGET]       目标:
+[STEP4_OK]       - New API 可达 (HTTP 200)
+[STEP4_WARN_401]       [WARN] 401 未授权,API Key 可能无效
+[STEP4_WARN_403]       [WARN] 403 禁止,API Key 被拒
+[STEP4_WARN_404]       [WARN] 404 未找到,base URL 错或 /v1/models 端点未开放
+[STEP4_WARN_000]       [WARN] 网络不可达,请检查 VPN / 网线
+[STEP4_WARN_OTH]       [WARN] HTTP 状态异常
+
+[STEP5_HEADER] ---- 5. opencode.exe 首次测试 ----
+[STEP5_OK]       - 启动成功
+[STEP5_FATAL]       [FATAL] opencode.exe 启动失败
+
+[STEP6_HEADER] ---- 6. 验证外网已隔离 (气隙核心保障) ----
+[STEP6_PROBE]       尝试访问 github.com / opencode.ai ...
+
+[STEP7_DONE] 部署完成
+[STEP7_NEXT_HINT1] 启动:  run.bat                  (日常用)
+[STEP7_NEXT_HINT2] 诊断:  verify_airgap.bat        (排查问题)
+[STEP7_NEXT_HINT3] 配置:  install_settings.bat      (推到全局)
+[STEP7_NEXT_HINT4] 卸载:  uninstall.bat             (清理)
+[STEP7_NEXT_NOTE] 注意: opencode.json 含真实凭据,已加入 .gitignore
+
+# ===== run.bat =====
+[RUN_TITLE] OpenCode v1.15.13 - 气隙启动器
+[RUN_SUBTITLE] - 锁定本地配置 - 注入隔离环境变量 - 启动 opencode.exe
+[RUN_FATAL_EXE] [FATAL] bin\opencode.exe 不存在,请先运行 setup.bat
+[RUN_FATAL_CFG] [FATAL] opencode.json 不存在,请从 opencode.example.json 复制
+[RUN_INFO_BASE] [INFO] 锁定配置:
+[RUN_INFO_MODEL] [INFO] 模型:
+[RUN_INFO_ISOLATE] [INFO] 隔离模式: OPENCODE_CONFIG 已锁本地,无 telemetry 外发
+[RUN_LAUNCH] ---- 启动 OpenCode ----
+
+# ===== verify_airgap.bat (5 步) =====
+[VERIFY_TITLE] OpenCode 气隙环境验证脚本
+[VERIFY_SUBTITLE] 用途: 确认部署后不触碰任何外网,且鉴权链路通畅
+[VERIFY_DEP_BIN] [1/5] 检查 bin\opencode.exe ...
+[VERIFY_DEP_BIN_OK]       [OK] 文件存在
+[VERIFY_DEP_BIN_MISS]       [FAIL] 文件缺失
+[VERIFY_DEP_CFG] [2/5] 检查 opencode.json ...
+[VERIFY_DEP_CFG_OK]       [OK] 文件存在
+[VERIFY_DEP_CFG_MISS]       [FAIL] 文件缺失
+[VERIFY_DEP_KEY] [3/5] 检查 API Key 配置 (脱敏显示) ...
+[VERIFY_DEP_KEY_OK]       [OK] apiKey 已配置 (前 8 位:
+[VERIFY_DEP_KEY_SUFFIX] ...)
+[VERIFY_DEP_KEY_PLACE]       [FAIL] apiKey 仍是占位符 <YOUR_NEWAPI_KEY>
+[VERIFY_DEP_KEY_MISS]       [FAIL] apiKey 字段缺失
+[VERIFY_NET] [4/5] 验证外网已隔离 ...
+[VERIFY_AUTH] [5/5] 鉴权 + 模型真实调用测试 (POST /v1/chat/completions) ...
+[VERIFY_AUTH_TARGET]       目标:
+[VERIFY_AUTH_OK]       - 鉴权 + 模型 OK,链路就绪
+[VERIFY_AUTH_401]       [WARN] 401 未授权,API Key 无效
+[VERIFY_AUTH_403]       [WARN] 403 禁止,模型未授权给该 Key
+[VERIFY_AUTH_404]       [WARN] 404 未找到,模型名未在 New API 注册
+[VERIFY_AUTH_400]       [WARN] 400 错误请求,模型存在但参数错
+[VERIFY_AUTH_000]       [WARN] 网络不可达
+[VERIFY_AUTH_OTH]       [WARN] HTTP 状态异常
+[VERIFY_RESULT] 验证结果: PASS=
+[VERIFY_RESULT_FAIL]  FAIL=
+[VERIFY_SUMMARY_FAIL] [状态] 存在
+[VERIFY_SUMMARY_FAIL_END] 个问题,请先解决
+[VERIFY_SUMMARY_PASS] [状态] 全部通过,可以放心使用 run.bat
+
+# ===== install_deps.bat =====
+[DEPS_TITLE] OpenCode 依赖一键安装
+[DEPS_INTRO] OpenCode 是单 exe,理论上不需要额外运行时,但需要:
+[DEPS_VC_HEADER] 1. 安装 VC++ 2015-2022 Redistributable (x64)
+[DEPS_VC_NOTE]       (OpenCode 基于 Bun+Rust 编译,需 VC++ 运行库)
+[DEPS_VC_RUN] [1/2] 安装 VC++ Redist...
+[DEPS_VC_OK]       [OK] 已安装
+[DEPS_VC_SKIP]       [SKIP] vc_redist.x64.exe 缺失
+[DEPS_VC_WARN]       [WARN] 安装可能未完成
+[DEPS_VC_MAY_MANUAL]       可手动双击 vc_redist.x64.exe
+[DEPS_POWERSHELL_HEADER] 2. 验证 PowerShell (Expand-Archive 需要)
+[DEPS_POWERSHELL_RUN] [2/2] 验证 PowerShell...
+[DEPS_POWERSHELL_OK]       [OK] PowerShell 可用
+[DEPS_POWERSHELL_FAIL]       [FAIL] PowerShell 不可用
+[DEPS_DONE] 依赖检查完成
+[DEPS_DONE_NEXT] 下一步: 回到本目录运行 setup.bat
+
+# ===== install_settings.bat =====
+[SETTINGS_TITLE] 推送 opencode.json 到全局配置目录
+[SETTINGS_TARGET] 目标: %USERPROFILE%\.config\opencode\opencode.json
+[SETTINGS_INFO_SRC] [INFO] 源文件:
+[SETTINGS_FAIL_SRC] [FATAL] 源 opencode.json 不存在,请先从 .example.json 复制
+[SETTINGS_MKDIR] [INFO] 创建目录:
+[SETTINGS_COPY_OK] [OK] 复制成功
+[SETTINGS_COPY_FAIL] [FATAL] 复制失败
+[SETTINGS_NOTE1] 注: 全局配置生效后,本目录 opencode.json 仍优先
+[SETTINGS_NOTE2]     run.bat 已锁 OPENCODE_CONFIG,不受全局配置影响
+
+# ===== uninstall.bat =====
+[UNINSTALL_TITLE] OpenCode 卸载脚本
+[UNINSTALL_LIST_HEADER] 即将删除:
+[UNINSTALL_LIST_1]   1. bin\opencode.exe
+[UNINSTALL_LIST_2]   2. %USERPROFILE%\.config\opencode\opencode.json
+[UNINSTALL_CONFIRM] 确认卸载? 输入 YES 继续,其他键取消:
+[UNINSTALL_CANCEL] 已取消,未做任何修改
+[UNINSTALL_REMOVING] 正在删除:
+[UNINSTALL_OK] [OK] 已卸载
+[UNINSTALL_DONE] 卸载完成
+[UNINSTALL_REINSTALL] 重新安装: 运行 setup.bat
+
+# ===== user-facing prompts & error suffixes (补充) =====

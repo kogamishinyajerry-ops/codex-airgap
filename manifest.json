@@ -1,0 +1,70 @@
+{
+  "name": "codex-airgap",
+  "version": "1.0.0",
+  "release_date": "2026-06-04",
+  "target_os": "windows-x64",
+  "airgap_ready": true,
+
+  "stack": {
+    "cli": {
+      "name": "OpenCode",
+      "version": "1.15.13",
+      "source": "https://github.com/sst/opencode",
+      "license": "MIT",
+      "binary": "bin/opencode.exe",
+      "binary_size_bytes": 151000000,
+      "binary_sha256": "d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8",
+      "archive": "downloads/opencode-windows-x64.zip",
+      "archive_size_bytes": 48500000,
+      "archive_sha256": "186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85"
+    },
+    "model_gateway": {
+      "name": "New API",
+      "base_url": "http://10.136.232.50/v1",
+      "protocol": "openai-chat-completions",
+      "model": "GLM-5.1-AWQ-4bit"
+    }
+  },
+
+  "system_requirements": {
+    "os": "Windows 10/11 x64",
+    "vc_redist": "2015-2022 (x64)",
+    "disk_mb": 250,
+    "ram_mb": 512,
+    "network": "内网可达 New API (10.136.232.50:80)"
+  },
+
+  "scripts": [
+    {"name": "setup.bat",             "purpose": "首次部署 (解压+校验+连通性)", "run_once": true},
+    {"name": "run.bat",               "purpose": "日常启动 OpenCode",             "run_once": false},
+    {"name": "verify_airgap.bat",     "purpose": "5 步独立诊断 (推荐日常用)",      "run_once": false},
+    {"name": "verify.bat",            "purpose": "兼容旧名 wrapper (跳转到 verify_airgap.bat)", "run_once": false},
+    {"name": "install_deps.bat",      "purpose": "VC++ Redist 一键安装 (可选)",    "run_once": true},
+    {"name": "install_settings.bat",  "purpose": "推配置到用户全局目录 (可选)",     "run_once": true},
+    {"name": "uninstall.bat",         "purpose": "卸载清理 (二次确认)",            "run_once": true},
+    {"name": "\u542f\u52a8.ps1",        "purpose": "PowerShell 启动器 (可选)",      "run_once": false}
+  ],
+
+  "env_vars": {
+    "OPENCODE_CONFIG": "锁定配置到本地 opencode.json (官方支持, 必设)",
+    "OPENCODE_DISABLE_TELEMETRY": "禁用遥测 (run.bat 兜底, 文档未明确支持)",
+    "DO_NOT_TRACK": "通用 Do-Not-Track 头",
+    "NO_COLOR": "禁用 ANSI 颜色"
+  },
+
+  "gitignore_critical": [
+    "opencode.json",
+    ".env",
+    "bin/opencode.exe",
+    "downloads/opencode-windows-x64.zip"
+  ],
+
+  "related_projects": [
+    "kogamishinyajerry-ops/claude-code-airgap (12 轮迭代后放弃, 因 New API 未开 Anthropic 协议)",
+    "kogamishinyajerry-ops/pi-coding-agent-airgap (Node.js 路线, 备选)"
+  ],
+
+  "decision_log": [
+    {"date": "2026-06-04", "version": "1.0.0", "summary": "立项, 转总决定放弃 Claude Code 转 OpenCode (New API 协议兼容)"}
+  ]
+}

@@ -6,6 +6,11 @@ opencode.json
 downloads/opencode-windows-x64.zip
 bin/opencode.exe
 
+# v6: VC++ Redist offline installer (large, regenerated from MS)
+dependencies/vc_redist.x64.exe
+dependencies/*.msi
+dependencies/*.msp
+
 # Build artifacts
 *.log
 *.tmp

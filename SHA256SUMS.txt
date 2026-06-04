@@ -1,22 +1,53 @@
-# SHA256 checksums for OpenCode v1.15.13 air-gap package
-# Generated: 2026-06-04
-# Verify on Windows:  certutil -hashfile <filename> SHA256
+# SHA256 checksums for codex-airgap v6
+# Generated: 2026-06-04 (v6 jing-xiu)
 #
-# Reference checksums:
-#   opencode.exe             d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8
-#   opencode-windows-x64.zip 186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85
+# Verify on Windows CMD:    certutil -hashfile <filename> SHA256
+# Verify on PowerShell:     Get-FileHash <filename> -Algorithm SHA256
+# Verify on Git Bash:       sha256sum <filename>
+# Batch verify (Git Bash):  sha256sum -c SHA256SUMS.txt
 #
-f1da27c1f96821d44e966155b0ede606bbb5a3e2d0dff4b63f7e71f07a2f860c  .gitignore
-fd5b6adc0d05d8bccba2cfd0e95c22ca6bcee7b551607f7e0c90f07ab45251f3  README.md
-434d9fc66beae754c72d127f8014573eda6bfd8b43586908f341c5d4509744c8  install_settings.bat
-96bf42081044bea2a062b10bbfed2c4585355b0608687a654c0a65e34049f49e  opencode.example.json
-f59d5407a4aadf7208dd1c6f361dd1e2575908a3e6809a2660f49f03b39566af  opencode.json
-5a805ca757e8067553890f03e81abcc6a6533537b844fef8ebdab3debe7bfcd9  run.bat
-b1b80876705b0501a4e8de8560060f80fec0af75630830718253e3e917f2cbc4  setup.bat
-32c0973a9f88004ebb9ca7459a52e558242d3b633c2d89918d2903122b8e51ab  uninstall.bat
-7298c714a2b8f0f01edc3e2e3897c23b75e8dbccb78369d6a0e7012ce614b56d  verify.bat
-3ea56e0c2b0752b67684376a2da9dc0a395b5dfe9827012601bf82a2691c287d  messages/zh.txt
+# ============================================================
+# Repository files (in this directory, excluding .git/)
+# ============================================================
+33e4f5c4671e800643cd72b17a55f720037dd500058cdee980325c97cd70ffc5  .env.template
+e12af525f6fc06984603b48bbf08cbb183d16b6476560fddb419e9489af31f10  .gitignore
+c79cc6a4d024fb3aab0df9ffa90ed2141694ebdb4c681ef1f46a66efc817bf59  README.md
+33294433135859d8f26e2712caf578562c62ff90d93d64e66359194ec634c7bb  docs/ARCHITECTURE.md
+ac357abc4092efdece79ba730eab21ea030148c288a441b249a060e79e56e353  docs/TROUBLESHOOTING.md
+cfd0398942795d6a061001c94e8ee28026a9044dcdbf04b267df7158620218f9  install_deps.bat
+6c06b3c8c43187f6b9dc02dd5046c56134bf38ad8a2aa2742e98b1f400c0f6bc  install_settings.bat
+eac729248ffa7566222805637c33b61690069936412a644360b5a08459fabb1f  manifest.json
+f6f8c96b110d183d079729a97f3216dc0b4b5e9a97d72492c6f0a05c78c49c18  messages/zh.txt
+d9c16f7b2b7dc7ce37ca16160c4c79964fb16a031c639c9eb807f4a514824811  opencode.example.json
+eade4349583ccc8ae41b48e06f971dc1115b56e6acf317fe349879d88e085cb5  run.bat
+bca83b06ab6700ba4ce3fd72ea727d08b499e1efe7de80a0e93b7f117cdba657  setup.bat
+80f6a50d05a7d40fb73269761e0c5f6e15143c4f4efc789b547d99813c964d3f  uninstall.bat
+0388a496dd3d461eebb95d8b4667b3ee839f36cde91b572abffe9ba951d4124f  verify.bat
+ea006a1a58bfb7e2c3d9be279d1ee7b24d8ac42beff52568450f4294fb76bfb5  verify_airgap.bat
+73108e14cbe8ecc834c4dd42cc4e29497b42106dc2dcb5b2cca27b61e59a16d8  启动.ps1
+f42b2d2176dcefe3a674abe77e504c21550893585997891880b0681072796917  精修说明-2026-06-04.md
+# (SHA256SUMS.txt itself is not checksummed, to avoid circularity)
+
+# ============================================================
+# Binary artifacts (NOT in repo, .gitignore excludes them)
+# These are reference values for end-to-end integrity check
+# ============================================================
 d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8  bin/opencode.exe
-597026e6f88f066ab2a7fe1b5f2644be7c6ee2d7dff07774c9959a5b4dd2b9d1  docs/ARCHITECTURE.md
-f4e4cd233e9dccbb36471fad2b58751baa2ac566d1c3e9aab9e19d28ea4de93d  docs/TROUBLESHOOTING.md
 186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85  downloads/opencode-windows-x64.zip
+
+# ============================================================
+# Transfer SOP (转总 verify after U-disk copy)
+# ============================================================
+# 1. Verify opencode.exe (unzipped):
+#      certutil -hashfile bin\opencode.exe SHA256
+#    Expected: d102e1df3ef1617c6d03211c8a5ca10798f9552887d50ca10040468b667edae8
+#
+# 2. Verify zip from GitHub Release:
+#      certutil -hashfile downloads\opencode-windows-x64.zip SHA256
+#    Expected: 186c5d42c3540e401b3e112ee28c964873cb04f61f1a8b0b43c3c88337efed85
+#
+# 3. Batch verify all repository files (Git Bash):
+#      sha256sum -c SHA256SUMS.txt
+#    Expected: all lines show "OK"
+#    (bin/ and downloads/ will report "FAILED open or read" -- this is OK,
+#     they are not in repo, just reference values)
